@@ -14,7 +14,13 @@ export default function Header() {
         </button>
       </div>
       <div className="header__right">
-        <a href="#">Docs</a>
+        <a
+          className="header__docs"
+          href="#"
+          style={{ textDecoration: "underline" }}
+        >
+          Docs
+        </a>
         <img
           src="/icons/notifications.svg"
           alt="notifications"

@@ -25,6 +25,10 @@ a {
   color: inherit;
 }
 
+a.header__docs {
+  text-decoration: underline;
+}
+
 button {
   cursor: pointer;
   border: none;
