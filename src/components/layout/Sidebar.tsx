@@ -103,6 +103,11 @@ const navItems = [
         icon: "/icons/audit-logs.svg",
         to: "/dashboard/audit-logs",
       },
+      {
+        label: "Systems Messages",
+        icon: "/icons/systems-messages.svg",
+        to: "/dashboard/systems-messages",
+      },
     ],
   },
 ];
@@ -150,6 +155,13 @@ export default function Sidebar() {
           </div>
         ))}
       </nav>
+      <div className="sidebar__footer">
+        <button className="sidebar__logout">
+          <img src="/icons/logout.svg" alt="" />
+          <span>Logout</span>
+        </button>
+        <p className="sidebar__version">v1.2.0</p>
+      </div>
     </aside>
   );
 }
