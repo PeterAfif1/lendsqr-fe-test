@@ -7,7 +7,7 @@ import "./Users.scss";
 
 export default function Users() {
   const navigate = useNavigate();
-  const allUsers = getUsers();
+  const [users, setUsers] = useState(getUsers());
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -21,7 +21,7 @@ export default function Users() {
     phoneNumber: "",
     status: "",
   });
-  const filteredUsers = allUsers.filter((user) => {
+  const filteredUsers = users.filter((user) => {
     return (
       (filters.orgName === "" || user.orgName === filters.orgName) &&
       (filters.userName === "" ||
@@ -35,7 +35,7 @@ export default function Users() {
     );
   });
 
-  const totalPages = Math.ceil(allUsers.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
   const start = (currentPage - 1) * itemsPerPage;
   const currentUsers = filteredUsers.slice(start, start + itemsPerPage);
 
@@ -248,6 +248,13 @@ export default function Users() {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
+                          setUsers((prev) =>
+                            prev.map((u) =>
+                              u.id === user.id
+                                ? { ...u, status: "Blacklisted" }
+                                : u,
+                            ),
+                          );
                           setActiveMenu(null);
                         }}
                       >
@@ -257,6 +264,12 @@ export default function Users() {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
+                          setUsers((prev) =>
+                            prev.map((u) =>
+                              u.id === user.id ? { ...u, status: "Active" } : u,
+                            ),
+                          );
+
                           setActiveMenu(null);
                         }}
                       >
@@ -288,7 +301,7 @@ export default function Users() {
             <option value={50}>50</option>
             <option value={100}>100</option>
           </select>
-          <span>out of {allUsers.length}</span>
+          <span>out of {users.length}</span>
         </div>
 
         <div className="users__pages">
