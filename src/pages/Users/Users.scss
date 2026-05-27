@@ -1,6 +1,7 @@
 @use "@/styles/variables" as *;
 
 .users {
+  width: 100%;
   &__title {
     font-size: 24px;
     font-weight: 600;
@@ -13,6 +14,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 26px;
     margin-bottom: 40px;
+    width: 100%;
   }
 
   &__stat-card {
@@ -43,11 +45,14 @@
     overflow-x: auto;
     position: relative;
     min-height: 650px;
+    overflow: visible;
+    width: 100%;
   }
 
   &__table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
 
     th {
       font-size: 12px;
@@ -56,7 +61,6 @@
       text-align: left;
       padding: 20px 16px;
       border-bottom: 1px solid rgba(33, 63, 125, 0.06);
-      white-space: nowrap;
     }
 
     td {
@@ -64,7 +68,6 @@
       color: $text-secondary;
       padding: 16px;
       border-bottom: 1px solid rgba(33, 63, 125, 0.06);
-      white-space: nowrap;
     }
 
     tr:hover td {

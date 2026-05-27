@@ -10,7 +10,6 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  gap: 700px;
 
   &__search-wrapper {
     display: flex;
@@ -53,6 +52,8 @@
     font-size: 14px;
     color: $text-primary;
     margin-left: auto;
+    min-width: 0;
+    flex-shrink: 0;
   }
 
   &__docs {
