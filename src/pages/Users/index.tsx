@@ -5,16 +5,15 @@ import { saveUser } from "../../services/storage";
 import type { User } from "../../types";
 import "./Users.scss";
 
-const ITEMS_PER_PAGE = 10;
-
 export default function Users() {
   const navigate = useNavigate();
   const allUsers = getUsers();
   const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
-  const totalPages = Math.ceil(allUsers.length / ITEMS_PER_PAGE);
-  const start = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentUsers = allUsers.slice(start, start + ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(allUsers.length / itemsPerPage);
+  const start = (currentPage - 1) * itemsPerPage;
+  const currentUsers = allUsers.slice(start, start + itemsPerPage);
 
   function handleUserClick(user: User) {
     saveUser(user);
@@ -68,7 +67,14 @@ export default function Users() {
                 "DATE JOINED",
                 "STATUS",
               ].map((col) => (
-                <th key={col}>{col}</th>
+                <th key={col}>
+                  <span>{col}</span>
+                  <img
+                    src="/icons/filter.svg"
+                    alt="Filter"
+                    className="users__filter-icon"
+                  />
+                </th>
               ))}
             </tr>
           </thead>
@@ -92,9 +98,24 @@ export default function Users() {
       </div>
 
       <div className="users__pagination">
-        <span>
-          Showing {ITEMS_PER_PAGE} out of {allUsers.length}
-        </span>
+        <div className="users__showing">
+          <span>Showing</span>
+          <select
+            className="users__per-page"
+            value={itemsPerPage}
+            onChange={(e) => {
+              setItemsPerPage(Number(e.target.value));
+              setCurrentPage(1);
+            }}
+          >
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={50}>50</option>
+            <option value={100}>100</option>
+          </select>
+          <span>out of {allUsers.length}</span>
+        </div>
+
         <div className="users__pages">
           <button
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
