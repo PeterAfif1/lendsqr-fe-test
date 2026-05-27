@@ -1,0 +1,183 @@
+@use "@/styles/variables" as *;
+
+.user-details {
+  &__back {
+    background: none;
+    border: none;
+    color: $text-secondary;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+      color: $text-primary;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      color: $text-primary;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    &--blacklist {
+      border: 1px solid #e4033b;
+      color: #e4033b;
+      background: transparent;
+    }
+
+    &--activate {
+      border: 1px solid $primary;
+      color: $primary;
+      background: transparent;
+    }
+  }
+
+  &__card {
+    background: $bg-white;
+    border-radius: 4px;
+    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+    margin-bottom: 24px;
+  }
+
+  &__profile {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 32px;
+
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      color: $text-primary;
+    }
+
+    p {
+      font-size: 14px;
+      color: $text-secondary;
+      margin-top: 4px;
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: $text-primary;
+    }
+  }
+
+  &__avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(33, 63, 125, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: 700;
+    color: $text-primary;
+  }
+
+  &__divider {
+    width: 1px;
+    height: 80px;
+    background: rgba(33, 63, 125, 0.1);
+  }
+
+  &__tier {
+    font-size: 12px;
+    color: $text-secondary;
+    margin-bottom: 8px;
+  }
+
+  &__tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 32px;
+    border-top: 1px solid rgba(33, 63, 125, 0.1);
+  }
+
+  &__tab {
+    padding: 16px 24px;
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: $text-secondary;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+
+    &--active {
+      color: $text-primary;
+      font-weight: 600;
+      border-bottom: 3px solid $primary;
+    }
+  }
+
+  &__info {
+    background: $bg-white;
+    border-radius: 4px;
+    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  &__section {
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: $text-primary;
+      margin-bottom: 24px;
+    }
+
+    & + & {
+      border-top: 1px solid rgba(33, 63, 125, 0.1);
+      padding-top: 32px;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+
+    p {
+      font-size: 11px;
+      color: $text-muted;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    span {
+      font-size: 15px;
+      font-weight: 500;
+      color: $text-primary;
+    }
+  }
+}
