@@ -57,6 +57,16 @@
     }
   }
 
+  &__stars {
+    display: flex;
+    gap: 4px;
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
   &__card {
     background: $bg-white;
     border-radius: 4px;

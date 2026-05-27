@@ -34,15 +34,18 @@ export default function UserDetails() {
 
       <div className="user-details__card">
         <div className="user-details__profile">
-          <div className="user-details__avatar">{user.fullName.charAt(0)}</div>
+          <div className="user-details__avatar">
+            <img src="/icons/user-detail-icon.svg" alt="avatar" />
+          </div>
           <div>
             <h2>{user.fullName}</h2>
             <p>{user.userName}</p>
           </div>
           <div className="user-details__divider" />
-          <div>
-            <p className="user-details__tier">User's Tier</p>
-            <span>⭐⭐⭐</span>
+          <div className="user-details__stars">
+            <img src="/icons/star-filled.svg" alt="" />
+            <img src="/icons/star-empty.svg" alt="" />
+            <img src="/icons/star-empty.svg" alt="" />
           </div>
           <div className="user-details__divider" />
           <div>
