@@ -10,6 +10,7 @@ export default function Users() {
   const allUsers = getUsers();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
   const [showFilter, setShowFilter] = useState(false);
   const [filters, setFilters] = useState({
@@ -222,6 +223,48 @@ export default function Users() {
                   <span className={getStatusClass(user.status)}>
                     {user.status}
                   </span>
+                </td>
+                <td className="users__actions-cell">
+                  <img
+                    src="/icons/more.svg"
+                    alt="more"
+                    className="users__more-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveMenu(activeMenu === user.id ? null : user.id);
+                    }}
+                  />
+                  {activeMenu === user.id && (
+                    <div className="users__action-menu">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleUserClick(user);
+                        }}
+                      >
+                        <img src="/icons/view-details.svg" alt="" /> View
+                        Details
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveMenu(null);
+                        }}
+                      >
+                        <img src="/icons/blacklist-user.svg" alt="" /> Blacklist
+                        User
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveMenu(null);
+                        }}
+                      >
+                        <img src="/icons/activate-user.svg" alt="" /> Activate
+                        User
+                      </button>
+                    </div>
+                  )}
                 </td>
               </tr>
             ))}
