@@ -11,9 +11,32 @@ export default function Users() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
+  const [showFilter, setShowFilter] = useState(false);
+  const [filters, setFilters] = useState({
+    orgName: "",
+    userName: "",
+    email: "",
+    date: "",
+    phoneNumber: "",
+    status: "",
+  });
+  const filteredUsers = allUsers.filter((user) => {
+    return (
+      (filters.orgName === "" || user.orgName === filters.orgName) &&
+      (filters.userName === "" ||
+        user.userName.toLowerCase().includes(filters.userName.toLowerCase())) &&
+      (filters.email === "" ||
+        user.email.toLowerCase().includes(filters.email.toLowerCase())) &&
+      (filters.phoneNumber === "" ||
+        user.phoneNumber.includes(filters.phoneNumber)) &&
+      (filters.status === "" || user.status === filters.status) &&
+      (filters.date === "" || user.dateJoined.includes(filters.date))
+    );
+  });
+
   const totalPages = Math.ceil(allUsers.length / itemsPerPage);
   const start = (currentPage - 1) * itemsPerPage;
-  const currentUsers = allUsers.slice(start, start + itemsPerPage);
+  const currentUsers = filteredUsers.slice(start, start + itemsPerPage);
 
   function handleUserClick(user: User) {
     saveUser(user);
@@ -56,6 +79,114 @@ export default function Users() {
       </div>
 
       <div className="users__table-wrapper">
+        {showFilter && (
+          <div className="users__filter-popup">
+            <div className="users__filter-field">
+              <label>Organization</label>
+              <select
+                value={filters.orgName}
+                onChange={(e) =>
+                  setFilters((f) => ({ ...f, orgName: e.target.value }))
+                }
+              >
+                <option value="">Select</option>
+                {["Lendsqr", "Irorun", "Lendstar", "Mella", "Opay"].map(
+                  (org) => (
+                    <option key={org} value={org}>
+                      {org}
+                    </option>
+                  ),
+                )}
+              </select>
+            </div>
+
+            <div className="users__filter-field">
+              <label>Username</label>
+              <input
+                placeholder="User"
+                value={filters.userName}
+                onChange={(e) =>
+                  setFilters((f) => ({ ...f, userName: e.target.value }))
+                }
+              />
+            </div>
+
+            <div className="users__filter-field">
+              <label>Email</label>
+              <input
+                placeholder="Email"
+                value={filters.email}
+                onChange={(e) =>
+                  setFilters((f) => ({ ...f, email: e.target.value }))
+                }
+              />
+            </div>
+
+            <div className="users__filter-field">
+              <label>Date</label>
+              <input
+                type="date"
+                value={filters.date}
+                onChange={(e) =>
+                  setFilters((f) => ({ ...f, date: e.target.value }))
+                }
+              />
+            </div>
+
+            <div className="users__filter-field">
+              <label>Phone Number</label>
+              <input
+                placeholder="Phone Number"
+                value={filters.phoneNumber}
+                onChange={(e) =>
+                  setFilters((f) => ({ ...f, phoneNumber: e.target.value }))
+                }
+              />
+            </div>
+
+            <div className="users__filter-field">
+              <label>Status</label>
+              <select
+                value={filters.status}
+                onChange={(e) =>
+                  setFilters((f) => ({ ...f, status: e.target.value }))
+                }
+              >
+                <option value="">Select</option>
+                {["Active", "Inactive", "Pending", "Blacklisted"].map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="users__filter-actions">
+              <button
+                className="users__filter-reset"
+                onClick={() => {
+                  setFilters({
+                    orgName: "",
+                    userName: "",
+                    email: "",
+                    date: "",
+                    phoneNumber: "",
+                    status: "",
+                  });
+                  setShowFilter(false);
+                }}
+              >
+                Reset
+              </button>
+              <button
+                className="users__filter-apply"
+                onClick={() => setShowFilter(false)}
+              >
+                Filter
+              </button>
+            </div>
+          </div>
+        )}
         <table className="users__table">
           <thead>
             <tr>
@@ -73,6 +204,7 @@ export default function Users() {
                     src="/icons/filter.svg"
                     alt="Filter"
                     className="users__filter-icon"
+                    onClick={() => setShowFilter((prev) => !prev)}
                   />
                 </th>
               ))}
