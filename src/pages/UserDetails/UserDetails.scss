@@ -191,3 +191,30 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .user-details {
+    &__profile {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    &__divider {
+      display: none;
+    }
+
+    &__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &__tabs {
+      overflow-x: auto;
+    }
+
+    &__header {
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+  }
+}

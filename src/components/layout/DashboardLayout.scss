@@ -14,3 +14,13 @@
     padding: 40px;
   }
 }
+
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+
+    &__content {
+      padding: 20px 16px;
+    }
+  }
+}

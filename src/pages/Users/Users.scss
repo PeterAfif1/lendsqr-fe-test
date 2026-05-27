@@ -250,3 +250,20 @@
     cursor: pointer;
   }
 }
+
+@media (max-width: 768px) {
+  .users {
+    &__stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &__table-wrapper {
+      overflow-x: auto;
+    }
+
+    &__pagination {
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+}
