@@ -61,6 +61,9 @@
       text-align: left;
       padding: 20px 16px;
       border-bottom: 1px solid rgba(33, 63, 125, 0.06);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     td {
@@ -68,6 +71,8 @@
       color: $text-secondary;
       padding: 16px;
       border-bottom: 1px solid rgba(33, 63, 125, 0.06);
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
     tr:hover td {
