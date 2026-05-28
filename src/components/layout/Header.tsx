@@ -1,8 +1,17 @@
 import "./Header.scss";
 
-export default function Header() {
+interface HeaderProps {
+  onMenuClick: () => void;
+}
+
+export default function Header({ onMenuClick }: HeaderProps) {
   return (
     <header className="header">
+      <button className="header__hamburger" onClick={onMenuClick}>
+        <span />
+        <span />
+        <span />
+      </button>
       <div className="header__search-wrapper">
         <input
           className="header__search"

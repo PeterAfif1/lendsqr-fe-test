@@ -42,17 +42,17 @@
     background: $bg-white;
     border-radius: 4px;
     box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
-    overflow-x: auto;
     position: relative;
-    min-height: 650px;
-    overflow: visible;
+    overflow: auto;
     width: 100%;
+    -webkit-overflow-scrolling: touch;
   }
 
   &__table {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
+    min-width: 900px;
 
     th {
       font-size: 12px;
@@ -62,7 +62,6 @@
       padding: 20px 16px;
       border-bottom: 1px solid rgba(33, 63, 125, 0.06);
       white-space: nowrap;
-      overflow: hidden;
       text-overflow: ellipsis;
     }
 
@@ -73,6 +72,7 @@
       border-bottom: 1px solid rgba(33, 63, 125, 0.06);
       white-space: nowrap;
       text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     tr:hover td {

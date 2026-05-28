@@ -10,6 +10,8 @@
   position: sticky;
   top: 0;
   z-index: 10;
+  align-self: stretch;
+  flex-shrink: 0;
 
   &__search-wrapper {
     display: flex;
@@ -17,9 +19,9 @@
     border: 1px solid $input-border;
     border-radius: 8px;
     overflow: hidden;
-    width: 400px;
+    flex: 1;
     flex-shrink: 1;
-    min-width: 200px;
+    max-width: 400px;
   }
 
   &__search {
@@ -52,7 +54,6 @@
     font-size: 14px;
     color: $text-primary;
     margin-left: auto;
-    min-width: 0;
     flex-shrink: 0;
   }
 
@@ -88,6 +89,24 @@
     font-weight: 600;
     color: $text-primary;
   }
+
+  &__hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+
+    span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: $text-primary;
+      border-radius: 2px;
+    }
+  }
 }
 
 @media (max-width: 768px) {
@@ -101,6 +120,10 @@
 
     &__docs {
       display: none;
+    }
+
+    &__hamburger {
+      display: flex;
     }
   }
 }

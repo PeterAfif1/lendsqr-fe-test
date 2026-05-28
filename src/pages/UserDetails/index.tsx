@@ -37,7 +37,7 @@ export default function UserDetails() {
           <div className="user-details__avatar">
             <img src="/icons/user-detail-icon.svg" alt="avatar" />
           </div>
-          <div>
+          <div className="user-details__name-section">
             <h2>{user.fullName}</h2>
             <p>{user.userName}</p>
           </div>
