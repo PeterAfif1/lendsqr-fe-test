@@ -74,6 +74,10 @@
       text-overflow: ellipsis;
       overflow: hidden;
     }
+    td:last-child {
+      overflow: visible;
+      position: relative;
+    }
 
     tr:hover td {
       background: rgba(57, 205, 204, 0.04);
