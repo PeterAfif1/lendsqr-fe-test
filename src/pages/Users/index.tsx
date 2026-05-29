@@ -31,7 +31,16 @@ export default function Users() {
       (filters.phoneNumber === "" ||
         user.phoneNumber.includes(filters.phoneNumber)) &&
       (filters.status === "" || user.status === filters.status) &&
-      (filters.date === "" || user.dateJoined.includes(filters.date))
+      (filters.date === "" ||
+        (() => {
+          const [year, month, day] = filters.date.split("-").map(Number);
+          const d = new Date(user.dateJoined);
+          return (
+            d.getFullYear() === year &&
+            d.getMonth() === month - 1 &&
+            d.getDate() === day
+          );
+        })())
     );
   });
 
